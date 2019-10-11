@@ -13,8 +13,8 @@
     "webpack-cli": "^3.3.9"
   },
   "scripts": {
-	"build": "pug web_lab_1/index.pug && webpack --progress -p",
-	"watch": "pug web_lab_1/index.pug && webpack --progress --watch"
+	"build": "lessc web_lab_1/index.less web_lab_1/index.css && pug web_lab_1/index.pug && webpack --progress -p",
+	"watch": "lessc web_lab_1/index.less web_lab_1/index.css && pug web_lab_1/index.pug && webpack --progress --watch"
   },
   "author": "",
   "license": "ISC"
