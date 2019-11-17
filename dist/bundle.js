@@ -98,6 +98,18 @@ eval("\n\nvar pug_has_own_property = Object.prototype.hasOwnProperty;\n\n/**\n *
 
 /***/ }),
 
+/***/ "./web_lab_1/aux_funcs.js":
+/*!********************************!*\
+  !*** ./web_lab_1/aux_funcs.js ***!
+  \********************************/
+/*! exports provided: queryfunc, parsedata */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"queryfunc\", function() { return queryfunc; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"parsedata\", function() { return parsedata; });\n\r\nlet weatherinfo = __webpack_require__(/*! ../web_lab_1/template.pug */ \"./web_lab_1/template.pug\")\r\nlet error_message = __webpack_require__(/*! ../web_lab_1/error_temp.pug */ \"./web_lab_1/error_temp.pug\")\r\n\r\nfunction parsedata(json)\r\n{\r\n\tlet locals = {\r\n\t\tcity: \"\",\r\n\t\tcountry: \"\", \r\n\t\tweather: \"\",\r\n\t\ttemperature: \"\",\r\n\t\tspeedofweend: \"\",\r\n\t\twetness: \"\"\r\n\t}\r\n\tif (json.name)\r\n\t\tlocals.city = \"Город: \"+json.name;\r\n\telse \r\n\t\tlocals.city = \"Упс, информация о городе потерялась :(\";\r\n\tif (json.sys && json.sys.country)\r\n\t\tlocals.country = \"Страна: \"+json.sys.country;\r\n\telse \r\n\t\tlocals.country = \"Упс, информация о стране потерялась :(\";\r\n\tif (json.weather && json.weather[0] && json.weather[0].main)\r\n\t\tlocals.weather = \"Погода: \"+json.weather[0].main;\r\n\telse \r\n\t\tlocals.weather = \"Упс, информация о погоде потерялась :(\";\r\n\tif (json.main && json.main.temp)\r\n\t\tlocals.temperature = \"Температура: \"+(parseInt(json.main.temp,10)-273)+\" °С\";\r\n\telse \r\n\t\tlocals.temperature = \"Упс, информация о температуре потерялась :(\";\r\n\tif (json.wind && json.wind.speed)\r\n\t\tlocals.speedofweend = \"Скорость ветра: \"+json.wind.speed+\" m/s\";\r\n\telse \r\n\t\tlocals.speedofweend = \"Упс, информация о скорости ветра потерялась :(\";\r\n\tif (json.main && json.main.humidity)\r\n\t\tlocals.wetness = \"Влажность воздуха: \"+json.main.humidity+\" %\";\r\n\telse\r\n\t\tlocals.wetness = \"Упс, информация о влажности воздуха потерялась :(\";\r\n\r\n\treturn locals;\r\n}\r\n\r\nasync function queryfunc(result)\r\n{\t\r\n\tif(result.ok)\r\n\t{\r\n\t\tlet json= await result.json();\r\n\t\tlet locals = parsedata(json);\r\n\t\treturn weatherinfo(locals);\r\n\t}\r\n\telse\r\n\t{\r\n\t\tlet locals = {\r\n\t\t\tmess: \"Ошибочка вышла :'(\"\r\n\t\t}\r\n\t\treturn error_message(locals);\r\n\t}\r\n}\r\n\r\n\n\n//# sourceURL=webpack:///./web_lab_1/aux_funcs.js?");
+
+/***/ }),
+
 /***/ "./web_lab_1/error_temp.pug":
 /*!**********************************!*\
   !*** ./web_lab_1/error_temp.pug ***!
@@ -113,10 +125,11 @@ eval("var pug = __webpack_require__(/*! ../node_modules/pug-runtime/index.js */ 
 /*!******************************!*\
   !*** ./web_lab_1/scripts.js ***!
   \******************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-eval("let weatherinfo = __webpack_require__(/*! ../web_lab_1/template.pug */ \"./web_lab_1/template.pug\")\r\nlet error_message = __webpack_require__(/*! ../web_lab_1/error_temp.pug */ \"./web_lab_1/error_temp.pug\")\r\nwindow.onload=function(){\r\n\tlet elem = document.getElementById('button');\r\n\telem.onclick=copypaste\r\n}\r\nasync function copypaste()\r\n{\r\n\tlet apilink=\"https://api.openweathermap.org/data/2.5/weather?q=\"+document.getElementById('inp').value+\"&APPID=e9931f3a56608b6f3be9e93c5d8d26b4\";\r\n\tlet result = await fetch(apilink);\r\n\t\r\n\tif(result.ok)\r\n\t{\r\n\t\tlet json= await result.json();\r\n\t\tlet locals = {\r\n\t\t\tcity: \"Город: \"+json.name,\r\n\t\t\tcountry: \"Страна: \"+json.sys.country, \r\n\t\t\tweather: \"Погода: \"+json.weather[0].main,\r\n\t\t\ttemperature: \"Температура: \"+(parseInt(json.main.temp,10)-273)+\" °С\",\r\n\t\t\tspeedofweend: \"Скорость ветра: \"+json.wind.speed+\" m/s\",\r\n\t\t\twetness: \"Влажность воздуха: \"+json.main.humidity+\" %\"\r\n\t\t}\r\n\t\tdocument.getElementById('maindiv').innerHTML= weatherinfo(locals);\r\n\t}\r\n\telse\r\n\t{\r\n\t\tlet locals = {\r\n\t\t\tmess: \"Ошибочка вышла :'(\"\r\n\t\t}\r\n\t\tdocument.getElementById('maindiv').innerHTML= error_message(locals);\r\n\t}\r\n}\n\n//# sourceURL=webpack:///./web_lab_1/scripts.js?");
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _aux_funcs_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./aux_funcs.js */ \"./web_lab_1/aux_funcs.js\");\n\r\n\r\nwindow.onload=function(){\r\n\tlet elem = document.getElementById('button');\r\n\telem.onclick=copypaste\r\n}\r\n\r\nasync function copypaste()\r\n{\r\n\tlet city_name = document.getElementById('inp').value;\r\n\tlet apilink=\"https://api.openweathermap.org/data/2.5/weather?q=\"+city_name+\"&appid=e9931f3a56608b6f3be9e93c5d8d26b4\";\r\n\tlet result = await fetch(apilink);\r\n\tlet qery_res = await Object(_aux_funcs_js__WEBPACK_IMPORTED_MODULE_0__[\"queryfunc\"])(result);\r\n\tdocument.getElementById('maindiv').innerHTML = qery_res;\r\n}\n\n//# sourceURL=webpack:///./web_lab_1/scripts.js?");
 
 /***/ }),
 
